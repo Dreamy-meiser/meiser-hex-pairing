@@ -11,6 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.2",
+    "adm-zip": "^0.5.16",
     "baileys": "^6.7.18",
     "cors": "^2.8.5",
     "dotenv": "^16.6.0",
