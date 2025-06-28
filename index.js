@@ -29,7 +29,6 @@ function generateSessionId() {
     uuidv4().replace(/-/g, '');
 }
 
-// 🔐 Upload compressed auth folder to Supabase
 async function uploadAuthToSupabase(sessionId) {
   const zip = new AdmZip();
   const authPath = path.join(__dirname, 'auth', sessionId);
@@ -40,8 +39,8 @@ async function uploadAuthToSupabase(sessionId) {
   }
 
   zip.addLocalFolder(authPath);
-
   const zipBuffer = zip.toBuffer();
+
   const { data, error } = await supabase.storage
     .from('meiser-hex-sessions')
     .upload(`${sessionId}.zip`, zipBuffer, {
@@ -76,7 +75,6 @@ app.post('/api/create-session', (req, res) => {
 app.get('/api/qr/:sessionId', async (req, res) => {
   const session = sessions.get(req.params.sessionId);
   if (!session) return res.status(404).json({ error: 'Session not found' });
-
   if (!session.qr) return res.status(204).send();
   res.json({ qr: session.qr });
 });
@@ -133,8 +131,16 @@ async function startWhatsApp(sessionId) {
         console.error('❌ Failed to send session ID to user:', e);
       }
 
-      // 📤 Upload auth session to Supabase
-      await uploadAuthToSupabase(sessionId);
+      // Wait for 2s to ensure files saved, then upload
+      setTimeout(async () => {
+        await uploadAuthToSupabase(sessionId);
+      }, 2000);
+
+      // Disconnect after 7s to avoid session conflict
+      setTimeout(() => {
+        console.log(`🔒 Disconnecting ${sessionId} to avoid dual connection...`);
+        sock.logout();
+      }, 7000);
     }
 
     if (connection === 'close') {
