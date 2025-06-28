@@ -137,10 +137,16 @@ async function startWhatsApp(sessionId) {
       }, 2000);
 
       // Disconnect after 7s to avoid session conflict
-      setTimeout(() => {
-        console.log(`🔒 Disconnecting ${sessionId} to avoid dual connection...`);
-        sock.logout();
-      }, 7000);
+     // Disconnect after 7s to avoid session conflict but keep session alive
+setTimeout(() => {
+  console.log(`🔒 Disconnecting ${sessionId} to avoid dual connection...`);
+  if (sock.ws) {
+    sock.ws.close();
+    sock.ev.removeAllListeners();
+    console.log(`📴 WebSocket closed and events removed for ${sessionId} (session still valid)`);
+  }
+}, 7000);
+
     }
 
     if (connection === 'close') {
