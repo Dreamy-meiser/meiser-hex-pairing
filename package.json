@@ -1,13 +1,14 @@
 {
   "name": "pairing-baileys",
   "version": "1.0.0",
-  "description": "",
+  "description": "MEISER_HEX WhatsApp pairing backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "build": "echo 'No build step needed'"
   },
   "keywords": [],
-  "author": "",
+  "author": "Monteli Blessen",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
