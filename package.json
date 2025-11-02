@@ -1,0 +1,26 @@
+{
+  "name": "pairing-baileys",
+  "version": "1.0.0",
+  "description": "MEISER_HEX WhatsApp pairing backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo 'No build step needed'"
+  },
+  "keywords": [],
+  "author": "Monteli Blessen",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.2",
+    "adm-zip": "^0.5.16",
+    "baileys": "7.0.0-rc.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.0",
+    "express": "^5.1.0",
+    "pino": "^9.7.0",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "uuid": "^11.1.0"
+  }
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MEISER-HEX Cosmic Gateway</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    
+    :root {
+      --cosmic-purple: #8a2be2;
+      --void-black: #0a0a1a;
+      --star-gold: #ffd700;
+      --nebula-pink: #ff00ff;
+    }
+    
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: relative;
+    }
+    
+    #cosmic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    }
+    
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .container {
+      background: rgba(10, 10, 26, 0.8);
+      border: 1px solid var(--cosmic-purple);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+      backdrop-filter: blur(5px);
+      max-width: 350px;
+      text-align: center;
+    }
+    
+    h1 {
+      color: var(--star-gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      margin-bottom: 1.5rem;
+      letter-spacing: 2px;
+    }
+    
+    #start-btn {
+      background: linear-gradient(135deg, var(--cosmic-purple), var(--nebula-pink));
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', sans-serif;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(138, 43, 226, 0.6);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    #start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(138, 43, 226, 0.8);
+    }
+    
+    #start-btn:disabled {
+      opacity: 0.7;
+      transform: none !important;
+    }
+    
+    #qr-section {
+      margin-top: 2rem;
+      display: none;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    #qr-img {
+      width: 100%;
+      border: 2px solid var(--star-gold);
+      border-radius: 10px;
+      padding: 10px;
+      background: white;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    .status {
+      margin-top: 1rem;
+      color: var(--star-gold);
+      font-size: 0.9rem;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cosmic-bg">
+    <div class="stars" id="stars1"></div>
+    <div class="stars" id="stars2"></div>
+    <div class="stars" id="stars3"></div>
+  </div>
+  
+  <div class="container">
+    <h1>MEISER-HEX COSMIC GATEWAY</h1>
+    <button id="start-btn">ACTIVATE QUANTUM LINK</button>
+    
+    <div id="qr-section">
+      <p>Scan Celestial Sigil with WhatsApp</p>
+      <img id="qr-img" src="" alt="Cosmic QR Code"/>
+      <p class="status">Awakening quantum channels...</p>
+    </div>
+  </div>
+
+  <script>
+    // Create twinkling stars
+    function createStars() {
+      const stars1 = document.getElementById('stars1');
+      const stars2 = document.getElementById('stars2');
+      const stars3 = document.getElementById('stars3');
+      
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.style.position = 'absolute';
+        star.style.width = `${Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.backgroundColor = 'white';
+        star.style.borderRadius = '50%';
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animation = `pulse ${2 + Math.random() * 3}s infinite`;
+        stars1.appendChild(star);
+      }
+      
+      for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.style.position = 'absolute';
+        star.style.width = `${1 + Math.random() * 2}px`;
+        star.style.height = star.style.width;
+        star.style.backgroundColor = 'white';
+        star.style.borderRadius = '50%';
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animation = `pulse ${3 + Math.random() * 4}s infinite`;
+        stars2.appendChild(star);
+      }
+      
+      for (let i = 0; i < 30; i++) {
+        const star = document.createElement('div');
+        star.style.position = 'absolute';
+        star.style.width = `${1 + Math.random()}px`;
+        star.style.height = star.style.width;
+        star.style.backgroundColor = 'white';
+        star.style.borderRadius = '50%';
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animation = `pulse ${4 + Math.random() * 5}s infinite`;
+        stars3.appendChild(star);
+      }
+    }
+    
+    // Initialize stars
+    createStars();
+    
+    // Handle QR generation
+    document.getElementById('start-btn').onclick = async () => {
+      const btn = document.getElementById('start-btn');
+      btn.disabled = true;
+      btn.textContent = 'ESTABLISHING LINK...';
+      
+      try {
+        // Create session (session ID handled in backend only)
+        const createRes = await fetch('/api/create-session', { method: 'POST' });
+        const { sessionId } = await createRes.json();
+        
+        // Start connection
+        await fetch(`/api/start/${sessionId}`, { method: 'POST' });
+        
+        // Show QR section
+        const qrImg = document.getElementById('qr-img');
+        const qrSection = document.getElementById('qr-section');
+        const statusText = document.querySelector('.status');
+        qrSection.style.display = 'block';
+        statusText.textContent = 'Quantum link awaiting scan...';
+        
+        // Poll for QR code
+        const interval = setInterval(async () => {
+          const qrRes = await fetch(`/api/qr/${sessionId}`);
+          if (qrRes.status === 200) {
+            const { qr } = await qrRes.json();
+            if (qr) {
+              qrImg.src = qr;
+              statusText.textContent = 'Celestial sigil ready!';
+              clearInterval(interval);
+            }
+          }
+        }, 1500);
+        
+      } catch (err) {
+        console.error('COSMIC CONNECTION FAILURE:', err);
+        document.querySelector('.status').textContent = 'Quantum disruption detected! Try again.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'REINITIATE CONNECTION';
+      }
+    };
+  </script>
+</body>
+</html>
